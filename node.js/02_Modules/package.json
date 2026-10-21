@@ -1,0 +1,13 @@
+{
+  "name": "day-1",
+  "version": "1.0.0",
+  "description": "this is Day number one",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "Script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node Script.js"
+  }
+}
