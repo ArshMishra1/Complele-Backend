@@ -1,6 +1,6 @@
 //!Node.js example
 
-const fs=require("fs")
+const fs=require("fs")     //main thread
 
 console.log("1 , Start")
 
