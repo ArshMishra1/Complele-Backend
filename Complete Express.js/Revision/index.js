@@ -50,44 +50,44 @@
 
 //2 POST
 
-import express from 'express'
-import userInfo from './userinfo.js';
-import fs from 'fs'
+// import express from 'express'
+// import userInfo from './userinfo.js';
+// import fs from 'fs'
 
-const app=express()
+// const app=express()
 
-let PORT=8100;
-app.use(express.json())
+// let PORT=8100;
+// app.use(express.json())
 
-app.get( "/",(req ,res)=>{
-    res.send(userInfo)
-})
+// app.get( "/",(req ,res)=>{
+//     res.send(userInfo)
+// })
 
-app.post("/userLogin",(req ,res)=>{
+// app.post("/userLogin",(req ,res)=>{
 
-     let {name , email ,age ,city }= req.body
+//      let {name , email ,age ,city }= req.body
 
      
-let data=userInfo.push(
-    {
-      id:userInfo.length+1,
-      name,
-      email,
-      age,
-      city
-}
-)
-fs.writeFile("userinfo.js" , data ,(error)=>{
-    if(error){
-        console.log(error)
-    }
-})
-         res.status(200).send("Data send successfully")
-})
+// let data=userInfo.push(
+//     {
+//       id:userInfo.length+1,
+//       name,
+//       email,
+//       age,
+//       city
+// }
+// )
+// fs.writeFile("userinfo.js" , data ,(error)=>{
+//     if(error){
+//         console.log(error)
+//     }
+// })
+//          res.status(200).send("Data send successfully")
+// })
 
-app.listen(PORT,()=>{
-    console.log(`Server running on ${PORT}`)
-})
+// app.listen(PORT,()=>{
+//     console.log(`Server running on ${PORT}`)
+// })
 
 //3 PUT
 //4 patch
