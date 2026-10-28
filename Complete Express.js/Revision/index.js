@@ -96,27 +96,49 @@ import userInfo from './userinfo.js';
 const app=express()
 const PORT=8100
 
-app.post('/userinfo/:id',(req ,res)=>{
+app.get("/userinfo" ,(req ,res)=>{
+    res.send(userInfo)
+})
+
+app.put('/userinfod/:id',(req ,res)=>{
      let {id}=req.params
       let userid=parseInt(id)
       const userinfoindex= userInfo.findIndex((ele)=>{
             return ele.id=== userid
        })
        
-       userInfo[userinfoindex]={
-          name:"update data",
-           
-       }
+       userInfo[userinfoindex] = {
+    id: userid,
+    name: "update data"
+};
 
-        res.json({
-    message: "User updated successfully",
-    data: userInfo[userinfoindex]
-  });
+
+              res.send("data update successfully")
+       
+})
+
+// start delete bro
+app.delete('/userinfo/:id',(req ,res)=>{
+      const {id}=req.params
+      const userid= parseInt(id)
+console.log(userid)
+      let deleteuser=userInfo.findIndex((ele)=>{
+        return ele.id===userid
+      })
+      console.log(deleteuser)
+        if (deleteuser === -1) {
+        return res.status(404).send("User not found");
+    }
+
+    userInfo.splice(deleteuser, 1);
+
+    res.send("User deleted successfully");
 })
 
 app.listen(PORT,()=>{
  console.log(`Sever runnig on${PORT}`)
 })
+
 
 //4 patch
 //5 Delete
