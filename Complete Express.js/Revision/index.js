@@ -90,5 +90,33 @@
 // })
 
 //3 PUT
+
+import express from 'express';
+import userInfo from './userinfo.js';
+const app=express()
+const PORT=8100
+
+app.post('/userinfo/:id',(req ,res)=>{
+     let {id}=req.params
+      let userid=parseInt(id)
+      const userinfoindex= userInfo.findIndex((ele)=>{
+            return ele.id=== userid
+       })
+       
+       userInfo[userinfoindex]={
+          name:"update data",
+           
+       }
+
+        res.json({
+    message: "User updated successfully",
+    data: userInfo[userinfoindex]
+  });
+})
+
+app.listen(PORT,()=>{
+ console.log(`Sever runnig on${PORT}`)
+})
+
 //4 patch
 //5 Delete
