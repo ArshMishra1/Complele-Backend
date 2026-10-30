@@ -1,26 +1,62 @@
-import express from "express";
+ import express from 'express'
+ const app=express()
+ const router=express.Router()
 
-const app= express();
+//GOLBA middleware
 
-const PORT=3000;
-
-app.use(express.json());
-
-//application level middleware
-let loging= function( req,res ,next){
-    console.log("Logined")
-    next()
+let sayhaiMiddleware=(req,res,next)=>{
+      console.log("Hay hello middleware")
+      next()
 }
-let authtication= function( req,res ,next){
-    console.log("authentication")
-    next()
-}
+app.use(sayhaiMiddleware)
 
-app.get('/',(req ,res)=>{
-    console.log(req.body)
-    res.send(req.body)
+//!routes level middleware
+
+// let routeslevel=(req,res,next)=>{
+//     console.log("helllo bro this router level s middleware")
+//     next()
+// }
+
+router.use((req ,res,next)=>{
+    console.log("second way to router")
+    next()
 })
 
-app.listen(PORT,()=>{
-    console.log(`Server is running on port ${PORT}`)
+
+ app.get('/',(req,res)=>{
+    res.send("HELLO EVERTHTING WORKING PROPERLy")
+
+ })
+
+ app.get('/data',(req ,res)=>{
+     res.send("SEcond user routes")
+ })
+
+// app.get('/routes' , routeslevel ,(req ,res)=>{
+//     res.send("this router level")
+// })
+
+
+//! router second way 
+
+router.get("/userdata",(req,res)=>{
+    res.send("Router second way")
 })
+
+router.get("/profile",(req,res)=>{
+    res.send("Router send Routes")
+})
+
+
+router.get("/contact",(req,res)=>{
+    res.send("Router for Contact")
+})
+
+
+//connect routes with router
+
+app.use("/user" ,router)
+
+ app.listen(3000,()=>{
+     console.log(`server runing on ${3000}`)
+ })
